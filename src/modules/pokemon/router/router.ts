@@ -1,4 +1,3 @@
-import AboutPage from '../pages/About.page.vue'
 import ListPage from '../pages/List.page.vue'
 import PokemonPage from '../pages/Pokemon.page.vue'
 
@@ -8,6 +7,7 @@ export const POKEMON_PAGE_NAME = {
   pokemon: 'pokemon'
 }
 
+// for lazy loading use directly import with arrow function
 export const POKEMON_ROUTES = [
   {
     path: '',
@@ -15,14 +15,20 @@ export const POKEMON_ROUTES = [
     component: ListPage
   },
   {
-    path: 'id',
+    path: ':id',
     name: POKEMON_PAGE_NAME.pokemon,
-    component: PokemonPage
+    component: PokemonPage,
+    props: (route) => {
+      // return props to component
+      return {
+        id: +route.params.id
+      }
+    }
   },
 
   {
     path: 'about',
     name: POKEMON_PAGE_NAME.about,
-    component: AboutPage
+    component: () => import('../pages/About.page.vue')
   }
 ]

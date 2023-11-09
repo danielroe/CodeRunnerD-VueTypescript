@@ -23,4 +23,17 @@ const router = createRouter({
   ]
 })
 
+//guard global sync to use async just add async in callback function async (to, from, next)
+// to use guard for only one route read beforeEnter option in routes object
+router.beforeEach((to, from, next) => {
+  console.log('before', to, from, next)
+  const is_authenticaded = true
+  // if authenticated
+  if (is_authenticaded) {
+    next()
+  } else {
+    next('/')
+  }
+})
+
 export default router

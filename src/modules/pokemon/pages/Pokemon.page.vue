@@ -1,3 +1,51 @@
 <template>
-    <h1>Pokemon page</h1>
+    <h1>Pokemon page {{ id }}</h1>
+    <div v-if="pokemon">
+        <img :src="pokemon.sprites.front_default" :alt="pokemon.name" srcset="">
+    </div>
 </template>
+
+<script lang="ts">
+
+declare interface Sprites {
+    front_default: string,
+}
+
+declare interface Pokemon {
+  sprites: Sprites,
+  name:string
+}
+declare interface BaseComponentData {
+  pokemon: Pokemon | null
+}
+
+    export default{
+        props:{
+            id:{
+                type:Number,
+                required:true
+            }
+        },
+        data():BaseComponentData{
+            return {
+                pokemon:null
+            }
+        },
+        created(){
+            this.getPokemon()
+        },
+        methods:{
+            async getPokemon(){
+                try {
+                    const pokemon= await fetch(`https://pokeapi.co/api/v2/pokemon/${this.id}`).then(data=>data.json())
+                    this.pokemon=pokemon
+                    console.log("pokemon",pokemon)
+                } catch (error) {
+                    console.error(error)
+                    this.$router.push('/pokemon')
+                }
+                
+            }
+        }
+    }
+</script>
