@@ -8,7 +8,7 @@ export const POKEMON_PAGE_NAME = {
 }
 
 // for lazy loading use directly import with arrow function
-export const POKEMON_ROUTES = [
+export const POKEMON_ROUTES_MODULE = [
   {
     path: '',
     name: POKEMON_PAGE_NAME.list,
@@ -18,7 +18,7 @@ export const POKEMON_ROUTES = [
     path: ':id',
     name: POKEMON_PAGE_NAME.pokemon,
     component: PokemonPage,
-    props: (route) => {
+    props: (route: { params: { id: string | number } }) => {
       // return props to component
       return {
         id: +route.params.id
@@ -29,6 +29,6 @@ export const POKEMON_ROUTES = [
   {
     path: 'about',
     name: POKEMON_PAGE_NAME.about,
-    component: () => import('../pages/About.page.vue')
+    component: () => import('../pages/About.page.vue') //Lazy load
   }
 ]

@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { POKEMON_ROUTES } from '../modules/pokemon/router/router.ts'
+import { POKEMON_ROUTES_MODULE } from '../modules/pokemon/router/router'
 import HomePage from '../views/Home.page.vue'
 import NotFoundPage from '../views/NotFound.page.vue'
 
@@ -13,7 +13,7 @@ const router = createRouter({
     },
     {
       path: '/pokemon',
-      children: POKEMON_ROUTES
+      children: POKEMON_ROUTES_MODULE
     },
     {
       path: '/:pathMatch(.*)*',

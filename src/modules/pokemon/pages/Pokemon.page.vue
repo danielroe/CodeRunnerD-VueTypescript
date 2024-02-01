@@ -6,20 +6,10 @@
 </template>
 
 <script lang="ts">
-
-declare interface Sprites {
-    front_default: string,
-}
-
-declare interface Pokemon {
-  sprites: Sprites,
-  name:string
-}
-declare interface BaseComponentData {
-  pokemon: Pokemon | null
-}
+import type {BaseComponentData} from '@/modules/pokemon/interfaces/get_pokemon.ts';
 
     export default{
+        name: 'PokemonPage',
         props:{
             id:{
                 type:Number,
@@ -48,4 +38,4 @@ declare interface BaseComponentData {
             }
         }
     }
-</script>
+</script>@/modules/pokemon/interfaces/get_pokemon
