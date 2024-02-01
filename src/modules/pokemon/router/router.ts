@@ -25,7 +25,6 @@ export const POKEMON_ROUTES_MODULE = [
       }
     }
   },
-
   {
     path: 'about',
     name: POKEMON_PAGE_NAME.about,

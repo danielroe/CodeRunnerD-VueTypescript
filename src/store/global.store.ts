@@ -1,14 +1,8 @@
+import { COUNTER_STORE_MODULE } from '@/modules/counter/store/stores'
 import { createStore } from 'vuex'
 // Create a new store instance.
 export const GLOBAL_STORE = createStore({
-  state() {
-    return {
-      count: 0
-    }
-  },
-  mutations: {
-    increment(state: { count: number }) {
-      state.count++
-    }
+  modules: {
+    counter: COUNTER_STORE_MODULE
   }
 })

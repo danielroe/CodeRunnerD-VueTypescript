@@ -2,18 +2,27 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { POKEMON_ROUTES_MODULE } from '../modules/pokemon/router/router'
 import HomePage from '../views/Home.page.vue'
 import NotFoundPage from '../views/NotFound.page.vue'
+import { COUNTER_ROUTES_MODULE } from '@/modules/counter/router/router'
+
+const APP_ROUTES_INDEX = {
+  home: 'home'
+}
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: APP_ROUTES_INDEX.home,
       component: HomePage
     },
     {
       path: '/pokemon',
       children: POKEMON_ROUTES_MODULE
+    },
+    {
+      path: '/counter',
+      children: COUNTER_ROUTES_MODULE
     },
     {
       path: '/:pathMatch(.*)*',
